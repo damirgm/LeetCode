@@ -24,15 +24,15 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         ListNode* rootNode = list1;
-        while(list1 && list2) {
+        while(list1 != nullptr && list2 != nullptr) {
             // while(list2) {
             if (list1->val <= list2->val) {
-                insertAfterListNode(list1, list2);
+                list1 = insertAfterListNode(list1, list2);
             } else {
-                insertBeforeListNode(findListNodeBefore(rootNode, list1), list1, list2);
+                list2 = insertBeforeListNode(findListNodeBefore(rootNode, list1), list1, list2);
             }
             // break;
-            list1 = rootNode;
+            list1 = list1->next;
             list2 = list2->next;
         }
         return rootNode;
