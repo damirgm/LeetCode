@@ -42,6 +42,19 @@ public:
         listNode->next = insertedNode;
         return nullptr;
     }
+
+    ListNode* insertBeforeListNode(ListNode* listNodeBeforeTarget, ListNode* targetListNode,  ListNode* insertedNode) {
+            if(insertedNode->next) {
+                ListNode* nodeAfterInsertedNode = insertedNode->next;
+                listNodeBeforeTarget = insertedNode;
+                insertedNode->next = targetListNode;
+                return nodeAfterInsertedNode;
+            }
+            listNodeBeforeTarget->next = insertedNode;
+            // cout << listNodeBeforeTarget->next->val << endl;
+            insertedNode->next = targetListNode;
+            return nullptr;
+    }
     
     ListNode* initNode(int val = 0, ListNode* nextListNode = nullptr) {
         ListNode* newNode = new ListNode(val, nextListNode);
@@ -58,7 +71,7 @@ int main()
 
     ListNode* insertedNode = sol->initNode();
 
-    sol->insertAfterListNode(rootNode, insertedNode);
+    sol->insertBeforeListNode(rootNode, ln2, insertedNode);
 
     while(rootNode) {
         cout << rootNode->val << endl;
